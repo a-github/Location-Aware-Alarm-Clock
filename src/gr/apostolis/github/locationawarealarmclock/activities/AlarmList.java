@@ -22,6 +22,7 @@ public class AlarmList extends Activity {
 		for (int i = 0; i < 20 ; i++) {
 			alarms.add(new Alarm());
 		}
+
 		alarmList.setAdapter(new AlarmListAdapter(this, alarms));
 	}
 

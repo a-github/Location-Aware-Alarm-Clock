@@ -33,6 +33,6 @@ public class AlarmListItem extends RelativeLayout {
 	public void setAlarm(Alarm alarm) {
 		alarmTime.setText(alarm.getTime());
 		repeatText.setText(alarm.getRepeatString());
-		toggleButton.setActivated(alarm.isActive());
-	}
+		toggleButton.setChecked(alarm.isActive());
+		}
 }
