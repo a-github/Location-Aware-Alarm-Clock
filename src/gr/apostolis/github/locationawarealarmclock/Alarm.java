@@ -3,7 +3,6 @@ package gr.apostolis.github.locationawarealarmclock;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Random;
 
 public class Alarm {
 	private boolean active;
@@ -14,14 +13,13 @@ public class Alarm {
 			Locale.getDefault()).getShortWeekdays();
 
 	public Alarm() {
-		Random randomGenerator = new Random();
-		active = randomGenerator.nextBoolean();
+		active = true;
 		repeatOn = new boolean[7];
 		for (int i = 0; i < repeatOn.length; i++) {
-			repeatOn[i] = randomGenerator.nextBoolean();
+			repeatOn[i] = false;
 		}
 		ringtone = new String("");
-		time = String.valueOf(randomGenerator.nextInt(24)) + ":" + String.valueOf(randomGenerator.nextInt(60));
+		time = new String("");
 	}
 
 	public String getRepeatString() {
@@ -129,5 +127,6 @@ public class Alarm {
 				+ ", ringtone=" + ringtone + ", time=" + time + ", repeat on="
 				+ getRepeatString() + "]";
 	}
+
 
 }
