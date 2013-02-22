@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Location Aware Alarm Clock</string>
+    <string name="app_name">Alarm Clock</string>
     <string name="menu_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_add_alarm">Add Alarm</string>
@@ -10,5 +10,17 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_alarm_settings">Settings</string>
+    <string name="create_alarm">Create New Alarm</string>
+    <string name="_time">Time</string>
+    <string name="_repeat">Repeat</string>
+    <string name="_add">Add</string>
+    <string name="_cancel">Cancel</string>
+    <string name="_sun">Sun</string>
+    <string name="_mon">Mon</string>
+    <string name="_tue">Tue</string>
+    <string name="_wed">Wed</string>
+    <string name="_thu">Thu</string>
+    <string name="_fri">Fri</string>
+    <string name="_sat">Sat</string>
 
 </resources>
