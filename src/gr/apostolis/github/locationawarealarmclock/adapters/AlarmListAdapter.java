@@ -33,4 +33,14 @@ public class AlarmListAdapter extends ArrayAdapter<Alarm> {
 		alarmView.setAlarm(alarms.get(position));
 		return alarmView;
 	}
+
+	public void addAlarm(Alarm alarm) {
+		alarms.add(alarm);
+		notifyDataSetChanged();
+	}
+
+	public void removeAlarm(int position) {
+		alarms.remove(position);
+		notifyDataSetChanged();
+	}
 }
