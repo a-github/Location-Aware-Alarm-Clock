@@ -25,6 +25,10 @@ public class Alarm {
 	}
 
 	public String getRepeatString() {
+		if (null == repeatOn) {
+			return "";
+		}
+
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < repeatOn.length; i++) {
