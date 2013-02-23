@@ -1,6 +1,7 @@
 package gr.apostolis.github.locationawarealarmclock;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -9,8 +10,24 @@ public class Alarm {
 	private boolean[] repeatOn;
 	private String ringtone;
 	private String time;
-	private static String[] weekDays = DateFormatSymbols.getInstance(
-			Locale.getDefault()).getShortWeekdays();
+	private static String[] weekDays;
+
+	static {
+		ArrayList<String> daysFormated = new ArrayList<String>();
+		for (String shortDay : DateFormatSymbols.getInstance(
+				Locale.getDefault()).getShortWeekdays()) {
+			// remove first blank element
+			if (0 == shortDay.length()) {
+				continue;
+			}
+			// make sure strings are capitalized and don't contain
+			// extra punctuation (see Locale.FRENCH)
+			daysFormated.add(Character.toUpperCase(shortDay.charAt(0))
+					+ shortDay.substring(1, shortDay.length())
+							.replace('.', ' ').trim());
+		}
+		weekDays = daysFormated.toArray(new String[daysFormated.size()]);
+	}
 
 	public Alarm() {
 		active = true;
@@ -34,7 +51,7 @@ public class Alarm {
 				// for some reason, the weekDays array returned by
 				// getShortWeekDays contains an extra element at the beginning
 				// with an empty string
-				sb.append(weekDays[i + 1] + " ");
+				sb.append(weekDays[i] + " ");
 			}
 		}
 		return sb.toString().trim();
@@ -127,6 +144,5 @@ public class Alarm {
 				+ ", ringtone=" + ringtone + ", time=" + time + ", repeat on="
 				+ getRepeatString() + "]";
 	}
-
 
 }
