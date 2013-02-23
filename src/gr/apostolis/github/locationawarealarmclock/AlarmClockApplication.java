@@ -151,6 +151,9 @@ public class AlarmClockApplication extends Application {
 
 	private long getLongRecurringDaysFromArray(boolean[] recurringArray) {
 		long recurring = 0;
+		if (null == recurringArray) {
+			return recurring;
+		}
 		for (int day = 0; day < 7; day++) {
 			int val = recurringArray[day] ? 1 : 0;
 			recurring = recurring | (val << day);
