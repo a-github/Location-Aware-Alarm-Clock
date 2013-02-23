@@ -1,6 +1,9 @@
 package gr.apostolis.github.locationawarealarmclock.activities;
 
+import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import gr.apostolis.github.locationawarealarmclock.R;
 import android.app.Activity;
@@ -17,11 +20,30 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
-public class AddNewAlarm extends Activity implements OnClickListener, OnCheckedChangeListener {
+public class AddNewAlarm extends Activity implements OnClickListener,
+		OnCheckedChangeListener {
 
 	private static int[] daysIDList = new int[] { R.id.sun_tgl, R.id.mon_tgl,
 			R.id.tue_tgl, R.id.wed_tgl, R.id.thu_tgl, R.id.fri_tgl,
 			R.id.sat_tgl };
+	private static String[] weekDays;
+
+	static {
+		ArrayList<String> daysFormated = new ArrayList<String>();
+		for (String shortDay : DateFormatSymbols.getInstance(
+				Locale.getDefault()).getShortWeekdays()) {
+			// remove first blank element
+			if (0 == shortDay.length()) {
+				continue;
+			}
+			// make sure strings are capitalized and don't contain
+			// extra punctuation (see Locale.FRENCH)
+			daysFormated.add(Character.toUpperCase(shortDay.charAt(0))
+					+ shortDay.substring(1, shortDay.length())
+							.replace('.', ' ').trim());
+		}
+		weekDays = daysFormated.toArray(new String[daysFormated.size()]);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +55,17 @@ public class AddNewAlarm extends Activity implements OnClickListener, OnCheckedC
 		repeat.setOnCheckedChangeListener(this);
 		add.setOnClickListener(this);
 		cancel.setOnClickListener(this);
+		setUpToggles();
+	}
+
+	private void setUpToggles() {
+		ToggleButton toggle;
+		for (int i = 0; i < daysIDList.length; i++) {
+			toggle = (ToggleButton) findViewById(daysIDList[i]);
+			toggle.setText(weekDays[i]);
+			toggle.setTextOn(weekDays[i]);
+			toggle.setTextOff(weekDays[i]);
+		}
 	}
 
 	@Override
