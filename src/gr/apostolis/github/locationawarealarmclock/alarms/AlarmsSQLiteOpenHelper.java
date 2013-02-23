@@ -18,6 +18,7 @@ public class AlarmsSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String ALARM_RINGTONE = "ringtone";
     public static final String ALARM_LONGTITUDE = "longtitude";
     public static final String ALARM_LATITUDE = "latitude";
+    public static final String ALARM_EF_RADIUS = "effective_radius";
 
 
 	public AlarmsSQLiteOpenHelper(Context context) {
@@ -44,7 +45,8 @@ public class AlarmsSQLiteOpenHelper extends SQLiteOpenHelper {
 				ALARM_RECURRING + " INTEGER, " +
 				ALARM_RINGTONE + " TEXT, " + 
 				ALARM_LONGTITUDE + " REAL, " +
-				ALARM_LATITUDE + " REAL" +
+				ALARM_LATITUDE + " REAL, " +
+				ALARM_EF_RADIUS + " REAL" +
 				" );";
 		Log.d(getClass().toString(), "Running sql: " + sql);
 		db.execSQL(sql);
