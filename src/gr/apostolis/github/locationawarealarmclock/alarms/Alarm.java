@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Alarm {
+	private long id;
 	private boolean active;
 	private boolean[] repeatOn;
 	private String ringtone;
@@ -169,6 +170,14 @@ public class Alarm {
 
 	public void setEffectiveRadius(double effectiveRadius) {
 		this.effectiveRadius = effectiveRadius;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	@Override
