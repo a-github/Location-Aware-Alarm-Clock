@@ -10,6 +10,10 @@ public class Alarm {
 	private boolean[] repeatOn;
 	private String ringtone;
 	private String time;
+	private String message;
+	private double longtitude;
+	private double latitude;
+	private double effectiveRadius;
 	private static String[] weekDays;
 
 	static {
@@ -48,9 +52,6 @@ public class Alarm {
 
 		for (int i = 0; i < repeatOn.length; i++) {
 			if (repeatOn[i]) {
-				// for some reason, the weekDays array returned by
-				// getShortWeekDays contains an extra element at the beginning
-				// with an empty string
 				sb.append(weekDays[i] + " ");
 			}
 		}
@@ -138,11 +139,44 @@ public class Alarm {
 		this.time = time;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public double getLongtitude() {
+		return longtitude;
+	}
+
+	public void setLongtitude(double longtitude) {
+		this.longtitude = longtitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getEffectiveRadius() {
+		return effectiveRadius;
+	}
+
+	public void setEffectiveRadius(double effectiveRadius) {
+		this.effectiveRadius = effectiveRadius;
+	}
+
 	@Override
 	public String toString() {
-		return "Alarm [active=" + active + ", repeat=" + (null != repeatOn)
-				+ ", ringtone=" + ringtone + ", time=" + time + ", repeat on="
-				+ getRepeatString() + "]";
+		return "Alarm [active=" + active + ", ringtone=" + ringtone + ", time="
+				+ time + ", message=" + message + ", longtitude=" + longtitude
+				+ ", latitude=" + latitude + ", effectiveRadius="
+				+ effectiveRadius + ", repeatOn=" + getRepeatString() + "]";
 	}
 
 }
