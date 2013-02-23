@@ -1,7 +1,7 @@
 package gr.apostolis.github.locationawarealarmclock.layouts;
 
-import gr.apostolis.github.locationawarealarmclock.Alarm;
 import gr.apostolis.github.locationawarealarmclock.R;
+import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;

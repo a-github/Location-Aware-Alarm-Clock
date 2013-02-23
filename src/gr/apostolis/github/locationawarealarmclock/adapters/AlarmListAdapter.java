@@ -1,7 +1,7 @@
 package gr.apostolis.github.locationawarealarmclock.adapters;
 
-import gr.apostolis.github.locationawarealarmclock.Alarm;
 import gr.apostolis.github.locationawarealarmclock.R;
+import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
 import gr.apostolis.github.locationawarealarmclock.layouts.AlarmListItem;
 
 import java.util.List;

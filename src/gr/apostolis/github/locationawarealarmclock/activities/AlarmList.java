@@ -3,9 +3,9 @@ package gr.apostolis.github.locationawarealarmclock.activities;
 import java.util.ArrayList;
 import java.util.List;
 
-import gr.apostolis.github.locationawarealarmclock.Alarm;
 import gr.apostolis.github.locationawarealarmclock.R;
 import gr.apostolis.github.locationawarealarmclock.adapters.AlarmListAdapter;
+import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

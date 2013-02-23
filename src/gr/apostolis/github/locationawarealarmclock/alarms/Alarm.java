@@ -1,4 +1,4 @@
-package gr.apostolis.github.locationawarealarmclock;
+package gr.apostolis.github.locationawarealarmclock.alarms;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
