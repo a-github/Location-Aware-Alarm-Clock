@@ -1,15 +1,11 @@
 package gr.apostolis.github.locationawarealarmclock.activities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gr.apostolis.github.locationawarealarmclock.R;
 import gr.apostolis.github.locationawarealarmclock.adapters.AlarmListAdapter;
 import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -22,9 +18,8 @@ public class AlarmList extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarm_list);
-		alarmList = (ListView)findViewById(R.id.AlarmList);
-		List<Alarm> alarms = new ArrayList<Alarm>();
-		alarmList.setAdapter(new AlarmListAdapter(this, alarms));
+		alarmList = (ListView) findViewById(R.id.AlarmList);
+		alarmList.setAdapter(new AlarmListAdapter(getApplication(), this));
 	}
 
 	@Override
@@ -50,18 +45,17 @@ public class AlarmList extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (RESULT_OK !=  resultCode) {
+		if (RESULT_OK != resultCode) {
 			return;
 		}
 		if (1 == requestCode) {
-			Bundle extras =  data.getExtras();
+			Bundle extras = data.getExtras();
 			String time = extras.getString("time");
 			boolean[] repeatOn = extras.getBooleanArray("repeatOn");
 			Alarm alarm = new Alarm();
 			alarm.setTime(time);
 			alarm.setRepeatOn(repeatOn);
-			Log.d(getClass().toString(), alarm.toString());
-			((AlarmListAdapter)alarmList.getAdapter()).add(alarm);
+			((AlarmListAdapter) alarmList.getAdapter()).add(alarm);
 		}
 	}
 }
