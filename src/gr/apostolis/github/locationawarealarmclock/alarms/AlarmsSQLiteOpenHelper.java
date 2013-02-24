@@ -3,7 +3,6 @@ package gr.apostolis.github.locationawarealarmclock.alarms;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class AlarmsSQLiteOpenHelper extends SQLiteOpenHelper {
 
@@ -48,7 +47,6 @@ public class AlarmsSQLiteOpenHelper extends SQLiteOpenHelper {
 				ALARM_LATITUDE + " REAL, " +
 				ALARM_EF_RADIUS + " REAL" +
 				" );";
-		Log.d(getClass().toString(), "Running sql: " + sql);
 		db.execSQL(sql);
 	}
 

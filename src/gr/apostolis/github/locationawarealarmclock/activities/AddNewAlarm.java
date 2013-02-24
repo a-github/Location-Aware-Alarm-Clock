@@ -1,15 +1,14 @@
 package gr.apostolis.github.locationawarealarmclock.activities;
 
+import gr.apostolis.github.locationawarealarmclock.R;
+
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
 
-import gr.apostolis.github.locationawarealarmclock.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -104,7 +103,6 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 			sb.append("0");
 		}
 		sb.append(timePicker.getCurrentMinute());
-		Log.d(getClass().toString(), sb.toString());
 		return sb.toString();
 	}
 
@@ -119,8 +117,6 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 				repeatOn[i] = toggle.isChecked();
 			}
 		}
-
-		Log.d(getClass().toString(), Arrays.toString(repeatOn));
 
 		return repeatOn;
 	}
