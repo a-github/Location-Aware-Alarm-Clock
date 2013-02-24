@@ -3,14 +3,14 @@ package gr.apostolis.github.locationawarealarmclock.activities;
 import gr.apostolis.github.locationawarealarmclock.R;
 import gr.apostolis.github.locationawarealarmclock.adapters.AlarmListAdapter;
 import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class AlarmList extends Activity {
+public class AlarmList extends ListActivity {
 
 	private ListView alarmList;
 
@@ -18,7 +18,7 @@ public class AlarmList extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarm_list);
-		alarmList = (ListView) findViewById(R.id.AlarmList);
+		alarmList = getListView();
 		alarmList.setAdapter(new AlarmListAdapter(getApplication(), this));
 	}
 
