@@ -41,8 +41,8 @@ public class AlarmListAdapter extends ArrayAdapter<Alarm> {
 		notifyDataSetChanged();
 	}
 
-	public void removeAlarm(long id) {
-		application.deleteAlarm(id);
+	public void removeAlarm(int id) {
+		application.deleteAlarm(getItem(id).getId());
 		notifyDataSetChanged();
 	}
 }
