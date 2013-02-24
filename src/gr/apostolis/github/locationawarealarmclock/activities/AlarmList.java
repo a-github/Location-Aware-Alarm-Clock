@@ -55,7 +55,7 @@ public class AlarmList extends ListActivity {
 			Alarm alarm = new Alarm();
 			alarm.setTime(time);
 			alarm.setRepeatOn(repeatOn);
-			((AlarmListAdapter) alarmList.getAdapter()).add(alarm);
+			((AlarmListAdapter) alarmList.getAdapter()).addAlarm(alarm);
 		}
 	}
 }
