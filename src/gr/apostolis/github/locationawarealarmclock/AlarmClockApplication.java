@@ -14,6 +14,8 @@ import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
 import gr.apostolis.github.locationawarealarmclock.alarms.AlarmsSQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import android.app.Application;
@@ -23,7 +25,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class AlarmClockApplication extends Application {
 
-	private List<Alarm> alarms;
+	private List<Alarm> alarms = null;
 	private SQLiteDatabase db;
 
 	@Override
@@ -37,7 +39,7 @@ public class AlarmClockApplication extends Application {
 	}
 
 	private void loadAlarms() {
-		alarms = new ArrayList<Alarm>();
+		alarms = Collections.synchronizedList(new ArrayList<Alarm>());
 		Cursor alarmsCursor = db.query(ALARMS_TABLE, new String[] { ALARM_ID,
 				ALARM_ENABLED, ALARM_TIME, ALARM_MESSAGE, ALARM_RECURRING,
 				ALARM_RINGTONE, ALARM_LONGTITUDE, ALARM_LATITUDE,
@@ -70,7 +72,9 @@ public class AlarmClockApplication extends Application {
 				alarm.setLatitude(latitude);
 				alarm.setLongtitude(longtitude);
 				alarm.setEffectiveRadius(effectiveRadius);
-				alarms.add(alarm);
+				synchronized (alarms) {
+					alarms.add(alarm);
+				}
 
 			} while (alarmsCursor.moveToNext());
 		}
@@ -93,7 +97,10 @@ public class AlarmClockApplication extends Application {
 		values.put(ALARM_EF_RADIUS, alarm.getEffectiveRadius());
 
 		alarm.setId(db.insert(ALARMS_TABLE, null, values));
-		alarms.add(alarm);
+
+		synchronized (alarms) {
+			alarms.add(alarm);
+		}
 	}
 
 	public void saveAlarm(Alarm alarm) {
@@ -117,6 +124,7 @@ public class AlarmClockApplication extends Application {
 	}
 
 	public void deleteAlarms(long[] ids) {
+
 		StringBuffer idList = new StringBuffer();
 		for (int i = 0; i < ids.length; i++) {
 			idList.append(ids[i]);
@@ -134,15 +142,25 @@ public class AlarmClockApplication extends Application {
 			idArrayList.add(id);
 		}
 
-		for (Alarm alarm : alarms) {
-			if (idArrayList.contains(alarm.getId())) {
-				alarms.remove(alarm);
+		synchronized (alarms) {
+			Iterator<Alarm> i = alarms.iterator();
+			while (i.hasNext()) {
+				Alarm tmp = i.next();
+				if (idArrayList.contains(tmp.getId())) {
+					alarms.remove(tmp);
+					break;
+				}
 			}
 		}
+
 	}
 
 	public Alarm get(int position) {
-		return alarms.get(position);
+		Alarm ret;
+		synchronized (alarms) {
+			ret = alarms.get(position);
+		}
+		return ret;
 	}
 
 	public void deleteAlarm(long id) {
