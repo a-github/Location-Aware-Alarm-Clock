@@ -25,19 +25,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int AlarmList=0x7f08000d;
         public static final int add_alarm_lbl=0x7f080000;
         public static final int add_button=0x7f08000c;
-        public static final int alarm_is_active=0x7f080013;
-        public static final int alarm_repeat=0x7f080012;
-        public static final int alarm_trigger_time=0x7f080011;
+        public static final int alarm_is_active=0x7f080012;
+        public static final int alarm_repeat=0x7f080011;
+        public static final int alarm_trigger_time=0x7f080010;
         public static final int cancel_button=0x7f08000b;
-        public static final int dummy_button=0x7f080010;
+        public static final int dummy_button=0x7f08000f;
         public static final int fri_tgl=0x7f080009;
-        public static final int fullscreen_content=0x7f08000e;
-        public static final int fullscreen_content_controls=0x7f08000f;
-        public static final int menu_add_alarm=0x7f080015;
-        public static final int menu_settings=0x7f080014;
+        public static final int fullscreen_content=0x7f08000d;
+        public static final int fullscreen_content_controls=0x7f08000e;
+        public static final int menu_add_alarm=0x7f080014;
+        public static final int menu_settings=0x7f080013;
         public static final int mon_tgl=0x7f080005;
         public static final int repeat_chk=0x7f080003;
         public static final int sat_tgl=0x7f08000a;

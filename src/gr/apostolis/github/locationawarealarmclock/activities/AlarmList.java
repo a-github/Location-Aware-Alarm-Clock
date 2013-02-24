@@ -3,11 +3,15 @@ package gr.apostolis.github.locationawarealarmclock.activities;
 import gr.apostolis.github.locationawarealarmclock.R;
 import gr.apostolis.github.locationawarealarmclock.adapters.AlarmListAdapter;
 import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
+import gr.apostolis.github.locationawarealarmclock.layouts.AlarmListItemOnGestureListener;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ListView;
 
 public class AlarmList extends ListActivity {
@@ -20,6 +24,15 @@ public class AlarmList extends ListActivity {
 		setContentView(R.layout.activity_alarm_list);
 		alarmList = getListView();
 		alarmList.setAdapter(new AlarmListAdapter(getApplication(), this));
+		final GestureDetector gestureDetector = new GestureDetector(
+				alarmList.getContext(), new AlarmListItemOnGestureListener(
+						alarmList));
+		View.OnTouchListener gestureListener = new View.OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				return gestureDetector.onTouchEvent(event);
+			}
+		};
+		alarmList.setOnTouchListener(gestureListener);
 	}
 
 	@Override
