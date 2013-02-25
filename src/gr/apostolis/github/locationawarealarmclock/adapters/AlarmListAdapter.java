@@ -9,8 +9,11 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class AlarmListAdapter extends ArrayAdapter<Alarm> {
+public class AlarmListAdapter extends ArrayAdapter<Alarm> implements
+		OnCheckedChangeListener {
 
 	private Context context;
 	private AlarmClockApplication application;
@@ -33,6 +36,7 @@ public class AlarmListAdapter extends ArrayAdapter<Alarm> {
 			alarmView = (AlarmListItem) convertView;
 		}
 		alarmView.setAlarm(application.get(position));
+		alarmView.setOnCheckedChangeListener(this);
 		return alarmView;
 	}
 
@@ -49,5 +53,13 @@ public class AlarmListAdapter extends ArrayAdapter<Alarm> {
 	public void undoDeleteAlarm() {
 		application.undoDeleteLastAlarm();
 		notifyDataSetChanged();
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		AlarmListItem li = (AlarmListItem) buttonView.getParent();
+		Alarm alarm = li.getAlarm();
+		alarm.setActive(isChecked);
+		application.saveAlarm(alarm);
 	}
 }
