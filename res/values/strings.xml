@@ -21,5 +21,7 @@
     <string name="_thu">Thu</string>
     <string name="_fri">Fri</string>
     <string name="_sat">Sat</string>
+    <string name="undo">Undo</string>
+    <string name="undo_delete_alarm">Undo delete alarm</string>
 
 </resources>

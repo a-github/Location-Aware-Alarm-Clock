@@ -1,8 +1,27 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@android:id/list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AlarmList" >
+    android:layout_height="match_parent" >
 
-</ListView>
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AlarmList" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/undobar"
+        style="@style/UndoBar" >
+
+        <TextView
+            android:id="@+id/undobar_message"
+            style="@style/UndoBarMessage"
+            android:textIsSelectable="false" />
+
+        <Button
+            android:id="@+id/undobar_button"
+            style="@style/UndoBarButton" />
+    </LinearLayout>
+
+</FrameLayout>

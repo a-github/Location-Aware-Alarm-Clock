@@ -4,9 +4,12 @@ import gr.apostolis.github.locationawarealarmclock.R;
 import gr.apostolis.github.locationawarealarmclock.adapters.AlarmListAdapter;
 import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
 import gr.apostolis.github.locationawarealarmclock.layouts.AlarmListItemOnGestureListener;
+import gr.apostolis.github.locationawarealarmclock.layouts.UndoBarController;
+import gr.apostolis.github.locationawarealarmclock.layouts.UndoBarController.UndoListener;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,25 +17,34 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 
-public class AlarmList extends ListActivity {
+public class AlarmList extends ListActivity implements UndoListener {
 
 	private ListView alarmList;
+	private UndoBarController undoBarController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarm_list);
-		alarmList = getListView();
+		alarmList = (ListView) findViewById(android.R.id.list);
 		alarmList.setAdapter(new AlarmListAdapter(getApplication(), this));
 		final GestureDetector gestureDetector = new GestureDetector(
 				alarmList.getContext(), new AlarmListItemOnGestureListener(
 						alarmList));
 		View.OnTouchListener gestureListener = new View.OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
-				return gestureDetector.onTouchEvent(event);
+				boolean handled = gestureDetector.onTouchEvent(event);
+				if (handled) {
+					undoBarController.showUndoBar(false,
+							getString(R.string.undo_delete_alarm), null);
+				}
+				return handled;
 			}
 		};
 		alarmList.setOnTouchListener(gestureListener);
+
+		undoBarController = new UndoBarController(findViewById(R.id.undobar),
+				this);
 	}
 
 	@Override
@@ -70,5 +82,22 @@ public class AlarmList extends ListActivity {
 			alarm.setRepeatOn(repeatOn);
 			((AlarmListAdapter) alarmList.getAdapter()).addAlarm(alarm);
 		}
+	}
+
+	@Override
+	public void onUndo(Parcelable token) {
+		((AlarmListAdapter) alarmList.getAdapter()).undoDeleteAlarm();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		undoBarController.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle state) {
+		super.onRestoreInstanceState(state);
+		undoBarController.onRestoreInstanceState(state);
 	}
 }

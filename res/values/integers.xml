@@ -1,0 +1,5 @@
+<resources>
+
+    <integer name="undobar_hide_delay">5000</integer>
+
+</resources>

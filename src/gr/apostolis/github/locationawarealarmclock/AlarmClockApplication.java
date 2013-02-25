@@ -27,6 +27,7 @@ public class AlarmClockApplication extends Application {
 
 	private List<Alarm> alarms = null;
 	private SQLiteDatabase db;
+	private Alarm lastRemovedAlarm;
 
 	@Override
 	public void onCreate() {
@@ -145,14 +146,23 @@ public class AlarmClockApplication extends Application {
 		synchronized (alarms) {
 			Iterator<Alarm> i = alarms.iterator();
 			while (i.hasNext()) {
-				Alarm tmp = i.next();
-				if (idArrayList.contains(tmp.getId())) {
-					alarms.remove(tmp);
+				lastRemovedAlarm = i.next();
+				if (idArrayList.contains(lastRemovedAlarm.getId())) {
+					alarms.remove(lastRemovedAlarm);
 					break;
 				}
 			}
 		}
 
+	}
+
+	public void undoDeleteLastAlarm() {
+		if (null == lastRemovedAlarm) {
+			return;
+		}
+
+		addAlarm(lastRemovedAlarm);
+		lastRemovedAlarm = null;
 	}
 
 	public Alarm get(int position) {

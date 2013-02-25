@@ -23,31 +23,43 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int ic_undobar_undo=0x7f020001;
+        public static final int undobar=0x7f020002;
+        public static final int undobar_button=0x7f020003;
+        public static final int undobar_button_focused=0x7f020004;
+        public static final int undobar_button_pressed=0x7f020005;
+        public static final int undobar_divider=0x7f020006;
     }
     public static final class id {
-        public static final int add_button=0x7f08000e;
-        public static final int alarm_is_active=0x7f080014;
-        public static final int alarm_repeat=0x7f080013;
-        public static final int alarm_trigger_time=0x7f080012;
-        public static final int cancel_button=0x7f08000d;
-        public static final int dummy_button=0x7f080011;
-        public static final int fri_tgl=0x7f08000b;
-        public static final int fullscreen_content=0x7f08000f;
-        public static final int fullscreen_content_controls=0x7f080010;
-        public static final int main_controls=0x7f080000;
-        public static final int menu_add_alarm=0x7f080016;
-        public static final int menu_settings=0x7f080015;
-        public static final int mon_tgl=0x7f080007;
-        public static final int repeat_buttons=0x7f080005;
-        public static final int repeat_chk=0x7f080004;
-        public static final int sat_tgl=0x7f08000c;
-        public static final int save_cancel_buttons=0x7f080001;
-        public static final int sun_tgl=0x7f080006;
-        public static final int thu_tgl=0x7f08000a;
-        public static final int timePicker=0x7f080003;
-        public static final int time_lbl=0x7f080002;
-        public static final int tue_tgl=0x7f080008;
-        public static final int wed_tgl=0x7f080009;
+        public static final int add_button=0x7f09000e;
+        public static final int alarm_is_active=0x7f090017;
+        public static final int alarm_repeat=0x7f090016;
+        public static final int alarm_trigger_time=0x7f090015;
+        public static final int cancel_button=0x7f09000d;
+        public static final int dummy_button=0x7f090014;
+        public static final int fri_tgl=0x7f09000b;
+        public static final int fullscreen_content=0x7f090012;
+        public static final int fullscreen_content_controls=0x7f090013;
+        public static final int main_controls=0x7f090000;
+        public static final int menu_add_alarm=0x7f090019;
+        public static final int menu_settings=0x7f090018;
+        public static final int mon_tgl=0x7f090007;
+        public static final int repeat_buttons=0x7f090005;
+        public static final int repeat_chk=0x7f090004;
+        public static final int sat_tgl=0x7f09000c;
+        public static final int save_cancel_buttons=0x7f090001;
+        public static final int sun_tgl=0x7f090006;
+        public static final int thu_tgl=0x7f09000a;
+        public static final int timePicker=0x7f090003;
+        public static final int time_lbl=0x7f090002;
+        public static final int tue_tgl=0x7f090008;
+        public static final int undobar=0x7f09000f;
+        public static final int undobar_button=0x7f090011;
+        public static final int undobar_message=0x7f090010;
+        public static final int wed_tgl=0x7f090009;
+    }
+    public static final class integer {
+        public static final int undobar_hide_delay=0x7f050000;
     }
     public static final class layout {
         public static final int activity_add_new_alarm=0x7f030000;
@@ -57,31 +69,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int alarm_list_item=0x7f030004;
     }
     public static final class menu {
-        public static final int activity_add_new_alarm=0x7f070000;
-        public static final int activity_alarm_list=0x7f070001;
-        public static final int activity_alarm_settings=0x7f070002;
+        public static final int activity_add_new_alarm=0x7f080000;
+        public static final int activity_alarm_list=0x7f080001;
+        public static final int activity_alarm_settings=0x7f080002;
     }
     public static final class string {
-        public static final int _add=0x7f05000b;
-        public static final int _cancel=0x7f05000c;
-        public static final int _fri=0x7f050012;
-        public static final int _mon=0x7f05000e;
-        public static final int _repeat=0x7f05000a;
-        public static final int _sat=0x7f050013;
-        public static final int _sun=0x7f05000d;
-        public static final int _thu=0x7f050011;
-        public static final int _time=0x7f050009;
-        public static final int _tue=0x7f05000f;
-        public static final int _wed=0x7f050010;
-        public static final int app_name=0x7f050000;
-        public static final int dummy_button=0x7f050006;
-        public static final int dummy_content=0x7f050007;
-        public static final int hello_world=0x7f050002;
-        public static final int menu_add_alarm=0x7f050003;
-        public static final int menu_settings=0x7f050001;
-        public static final int title_activity_add_new_alarm=0x7f050004;
-        public static final int title_activity_alarm_settings=0x7f050008;
-        public static final int title_activity_alarm_triggered=0x7f050005;
+        public static final int _add=0x7f06000b;
+        public static final int _cancel=0x7f06000c;
+        public static final int _fri=0x7f060012;
+        public static final int _mon=0x7f06000e;
+        public static final int _repeat=0x7f06000a;
+        public static final int _sat=0x7f060013;
+        public static final int _sun=0x7f06000d;
+        public static final int _thu=0x7f060011;
+        public static final int _time=0x7f060009;
+        public static final int _tue=0x7f06000f;
+        public static final int _wed=0x7f060010;
+        public static final int app_name=0x7f060000;
+        public static final int dummy_button=0x7f060006;
+        public static final int dummy_content=0x7f060007;
+        public static final int hello_world=0x7f060002;
+        public static final int menu_add_alarm=0x7f060003;
+        public static final int menu_settings=0x7f060001;
+        public static final int title_activity_add_new_alarm=0x7f060004;
+        public static final int title_activity_alarm_settings=0x7f060008;
+        public static final int title_activity_alarm_triggered=0x7f060005;
+        public static final int undo=0x7f060014;
+        public static final int undo_delete_alarm=0x7f060015;
     }
     public static final class style {
         /** 
@@ -105,15 +119,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
-        public static final int ButtonBar=0x7f060003;
-        public static final int ButtonBarButton=0x7f060004;
-        public static final int FullscreenActionBarStyle=0x7f060005;
-        public static final int FullscreenTheme=0x7f060002;
+        public static final int AppTheme=0x7f070001;
+        public static final int ButtonBar=0x7f070003;
+        public static final int ButtonBarButton=0x7f070004;
+        public static final int FullscreenActionBarStyle=0x7f070008;
+        public static final int FullscreenTheme=0x7f070002;
+        public static final int UndoBar=0x7f070005;
+        public static final int UndoBarButton=0x7f070007;
+        public static final int UndoBarMessage=0x7f070006;
     }
     public static final class styleable {
         /** 
