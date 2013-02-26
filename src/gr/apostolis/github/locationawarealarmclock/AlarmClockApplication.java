@@ -52,8 +52,8 @@ public class AlarmClockApplication extends Application {
 		if (!alarmsCursor.isAfterLast()) {
 			do {
 				long id = alarmsCursor.getLong(0);
-				boolean enabled = Boolean.parseBoolean(alarmsCursor
-						.getString(1));
+				boolean enabled = alarmsCursor.getString(1).equals("0") ? false
+						: true;
 				String time = alarmsCursor.getString(2);
 				String message = alarmsCursor.getString(3);
 				long recurring = alarmsCursor.getLong(4);
