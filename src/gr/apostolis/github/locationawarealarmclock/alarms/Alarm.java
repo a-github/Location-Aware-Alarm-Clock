@@ -191,4 +191,15 @@ public class Alarm implements Serializable{
 				+ effectiveRadius + ", repeatOn=" + getRepeatString() + "]";
 	}
 
+	public void copyFrom(Alarm alarm) {
+		active= alarm.isActive();
+		repeatOn = alarm.getRepeatOn();
+		ringtone = alarm.getRingtone();
+		time = alarm.getTime();
+		message = alarm.getMessage();
+		longtitude = alarm.getLongtitude();
+		latitude = alarm.getLatitude();
+		effectiveRadius = alarm.getEffectiveRadius();
+	}
+
 }
