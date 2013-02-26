@@ -44,12 +44,7 @@ public class AlarmList extends ListActivity implements UndoListener,
 				alarmList.getContext(), this);
 		View.OnTouchListener gestureListener = new View.OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
-				boolean handled = gestureDetector.onTouchEvent(event);
-				if (handled) {
-					undoBarController.showUndoBar(false,
-							getString(R.string.undo_delete_alarm), null);
-				}
-				return handled;
+				return gestureDetector.onTouchEvent(event);
 			}
 		};
 		alarmList.setOnTouchListener(gestureListener);
@@ -128,7 +123,8 @@ public class AlarmList extends ListActivity implements UndoListener,
 			}
 			anim.setAnimationListener(this);
 			item.startAnimation(anim);
-
+			undoBarController.showUndoBar(false,
+					getString(R.string.undo_delete_alarm), null);
 			return true;
 		}
 		return false;
@@ -137,22 +133,6 @@ public class AlarmList extends ListActivity implements UndoListener,
 
 	@Override
 	public void onLongPress(MotionEvent e) {
-		int position = alarmList
-				.pointToPosition((int) e.getX(), (int) e.getY());
-		if (AdapterView.INVALID_POSITION == position) {
-			return;
-		}
-
-		AlarmListItem item = (AlarmListItem) alarmList.getChildAt(position);
-
-		if (null == item) {
-			return;
-		}
-
-		Intent intent = new Intent(alarmList.getContext(), AddNewAlarm.class);
-		intent.putExtra("ALARM", item.getAlarm());
-		startActivityForResult(intent, REQUEST_ALARM_UPDATE);
-
 	}
 
 	@Override
@@ -167,7 +147,23 @@ public class AlarmList extends ListActivity implements UndoListener,
 
 	@Override
 	public boolean onSingleTapUp(MotionEvent e) {
-		return false;
+		int position = alarmList
+				.pointToPosition((int) e.getX(), (int) e.getY());
+		if (AdapterView.INVALID_POSITION == position) {
+			return false;
+		}
+
+		AlarmListItem item = (AlarmListItem) alarmList.getChildAt(position);
+
+		if (null == item) {
+			return false;
+		}
+
+		Intent intent = new Intent(alarmList.getContext(), AddNewAlarm.class);
+		intent.putExtra("ALARM", item.getAlarm());
+		startActivityForResult(intent, REQUEST_ALARM_UPDATE);
+
+		return true;
 	}
 
 	@Override
