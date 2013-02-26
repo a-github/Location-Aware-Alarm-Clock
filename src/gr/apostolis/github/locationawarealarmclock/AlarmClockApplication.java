@@ -122,6 +122,16 @@ public class AlarmClockApplication extends Application {
 		long id = alarm.getId();
 		String where = String.format("%s = ?", ALARM_ID);
 		db.update(ALARMS_TABLE, values, where, new String[] { id + "" });
+		synchronized (alarms) {
+			Iterator<Alarm> i = alarms.iterator();
+			while (i.hasNext()) {
+				Alarm outdatedAlarm = i.next();
+				if (outdatedAlarm.getId() == id) {
+					outdatedAlarm.copyFrom(alarm);
+					break;
+				}
+			}
+		}
 	}
 
 	public void deleteAlarms(long[] ids) {
