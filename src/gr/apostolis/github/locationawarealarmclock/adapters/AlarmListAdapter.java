@@ -62,4 +62,9 @@ public class AlarmListAdapter extends ArrayAdapter<Alarm> implements
 		alarm.setActive(isChecked);
 		application.saveAlarm(alarm);
 	}
+
+	public void saveAlarm(Alarm alarm) {
+		application.saveAlarm(alarm);
+		notifyDataSetChanged();
+	}
 }
