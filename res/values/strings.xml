@@ -12,8 +12,6 @@
     <string name="title_activity_alarm_settings">Settings</string>
     <string name="_time">Time</string>
     <string name="_repeat">Repeat</string>
-    <string name="_add">Add</string>
-    <string name="_cancel">Cancel</string>
     <string name="_sun">Sun</string>
     <string name="_mon">Mon</string>
     <string name="_tue">Tue</string>
