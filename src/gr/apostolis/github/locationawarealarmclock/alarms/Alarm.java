@@ -1,11 +1,14 @@
 package gr.apostolis.github.locationawarealarmclock.alarms;
 
+import java.io.Serializable;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Alarm {
+public class Alarm implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private boolean active;
 	private boolean[] repeatOn;
