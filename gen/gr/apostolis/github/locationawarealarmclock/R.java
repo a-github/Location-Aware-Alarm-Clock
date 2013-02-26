@@ -41,8 +41,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fullscreen_content=0x7f090012;
         public static final int fullscreen_content_controls=0x7f090013;
         public static final int main_controls=0x7f090000;
-        public static final int menu_add_alarm=0x7f090019;
-        public static final int menu_settings=0x7f090018;
+        public static final int menu_add_alarm=0x7f090018;
+        public static final int menu_settings=0x7f090019;
         public static final int mon_tgl=0x7f090007;
         public static final int repeat_buttons=0x7f090005;
         public static final int repeat_chk=0x7f090004;
@@ -69,22 +69,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int alarm_list_item=0x7f030004;
     }
     public static final class menu {
-        public static final int activity_add_new_alarm=0x7f080000;
-        public static final int activity_alarm_list=0x7f080001;
-        public static final int activity_alarm_settings=0x7f080002;
+        public static final int activity_alarm_list=0x7f080000;
+        public static final int activity_alarm_settings=0x7f080001;
     }
     public static final class string {
-        public static final int _add=0x7f06000b;
-        public static final int _cancel=0x7f06000c;
-        public static final int _fri=0x7f060012;
-        public static final int _mon=0x7f06000e;
+        public static final int _fri=0x7f060010;
+        public static final int _mon=0x7f06000c;
         public static final int _repeat=0x7f06000a;
-        public static final int _sat=0x7f060013;
-        public static final int _sun=0x7f06000d;
-        public static final int _thu=0x7f060011;
+        public static final int _sat=0x7f060011;
+        public static final int _sun=0x7f06000b;
+        public static final int _thu=0x7f06000f;
         public static final int _time=0x7f060009;
-        public static final int _tue=0x7f06000f;
-        public static final int _wed=0x7f060010;
+        public static final int _tue=0x7f06000d;
+        public static final int _wed=0x7f06000e;
         public static final int app_name=0x7f060000;
         public static final int dummy_button=0x7f060006;
         public static final int dummy_content=0x7f060007;
@@ -94,8 +91,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_activity_add_new_alarm=0x7f060004;
         public static final int title_activity_alarm_settings=0x7f060008;
         public static final int title_activity_alarm_triggered=0x7f060005;
-        public static final int undo=0x7f060014;
-        public static final int undo_delete_alarm=0x7f060015;
+        public static final int undo=0x7f060012;
+        public static final int undo_delete_alarm=0x7f060013;
     }
     public static final class style {
         /** 
