@@ -1,6 +1,7 @@
 package gr.apostolis.github.locationawarealarmclock.activities;
 
 import gr.apostolis.github.locationawarealarmclock.R;
+import gr.apostolis.github.locationawarealarmclock.alarms.Alarm;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,7 +26,7 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 			R.id.tue_tgl, R.id.wed_tgl, R.id.thu_tgl, R.id.fri_tgl,
 			R.id.sat_tgl };
 	private static String[] weekDays;
-
+	private TimePicker timePicker;
 	static {
 		ArrayList<String> daysFormated = new ArrayList<String>();
 		for (String shortDay : DateFormatSymbols.getInstance(
@@ -51,9 +51,11 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 		Button add = (Button) findViewById(R.id.add_button);
 		Button cancel = (Button) findViewById(R.id.cancel_button);
 		CheckBox repeat = (CheckBox) findViewById(R.id.repeat_chk);
+		timePicker = (TimePicker) findViewById(R.id.timePicker);
 		repeat.setOnCheckedChangeListener(this);
 		add.setOnClickListener(this);
 		cancel.setOnClickListener(this);
+		handleIntent(getIntent());
 		setUpToggles();
 	}
 
@@ -67,11 +69,42 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_add_new_alarm, menu);
-		return true;
+	private void handleIntent(Intent intent) {
+
+		if (null == intent) {
+			return;
+		}
+
+		Alarm alarm = (Alarm) intent.getSerializableExtra("ALARM");
+		if (null == alarm) {
+			return;
+		}
+
+		int hour = Integer.valueOf(alarm.getTime().split(":")[0]);
+		int minutes = Integer.valueOf(alarm.getTime().split(":")[1]);
+		timePicker.setCurrentHour(hour);
+		timePicker.setCurrentMinute(minutes);
+
+		CheckBox repeat = (CheckBox) findViewById(R.id.repeat_chk);
+		boolean[] repeatOn = alarm.getRepeatOn();
+
+		if (null == repeatOn) {
+			repeat.setChecked(false);
+			return;
+		}
+
+		ToggleButton toggle;
+		boolean isRepeating = false;
+
+		for (int i = 0; i < daysIDList.length; i++) {
+			toggle = (ToggleButton) findViewById(daysIDList[i]);
+			toggle.setChecked(repeatOn[i]);
+			isRepeating = isRepeating | repeatOn[i];
+			toggle.setText(weekDays[i]);
+			toggle.setTextOn(weekDays[i]);
+			toggle.setTextOff(weekDays[i]);
+		}
+		repeat.setChecked(isRepeating);
 	}
 
 	@Override
@@ -79,8 +112,14 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 		Intent intent = getIntent();
 		switch (v.getId()) {
 		case R.id.add_button:
-			intent.putExtra("time", getTime());
-			intent.putExtra("repeatOn", getRepeatOn());
+			Alarm alarm = (Alarm) intent.getSerializableExtra("ALARM");
+			if (null == alarm) {
+				// new alarm
+				alarm = new Alarm();
+			}
+			alarm.setTime(getTime());
+			alarm.setRepeatOn(getRepeatOn());
+			intent.putExtra("ALARM", alarm);
 			setResult(RESULT_OK, intent);
 			break;
 		case R.id.cancel_button:
@@ -92,7 +131,6 @@ public class AddNewAlarm extends Activity implements OnClickListener,
 	}
 
 	public String getTime() {
-		TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 		StringBuilder sb = new StringBuilder();
 		if (timePicker.getCurrentHour() < 10) {
 			sb.append("0");
